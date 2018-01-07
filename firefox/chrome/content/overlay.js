@@ -73,6 +73,22 @@ var savemytabs = {
 		}
 		
 		var lines = [];
+		
+		var useHtml = this.branch.getBoolPref("usehtml");
+		var fileExt = "";
+		
+		//Set up the HTML headings
+		if ( useHtml )
+		{
+			lines.push("<HTML>");
+			lines.push("<body>");
+			fileExt = ".html";
+		}
+		else
+		{
+			lines.push("");
+			fileExt = ".txt";
+		}
 
 		// Cycle through the windows:
 		var w = 1;
@@ -109,7 +125,14 @@ var savemytabs = {
 						var pageURL = browser.currentURI.spec;
 						var pageDescription = tabItem.tab.label;
 						
-						lines.push("window #" + w + "/group #" + (idxGroup+1) + "/tab #" + (idxTab+1) + "\t" + "<a href=" + browser.currentURI.spec.replace("\t", " ") + ">" + browser.currentURI.spec.replace("\t", " ") + "</a>" + "\t" + browser.contentDocument.title.replace("\t", " ") + "<br>");
+						if ( useHtml )
+						{
+							lines.push("window #" + w + "/group #" + (idxGroup+1) + "/tab #" + (idxTab+1) + "\t" + "<a href=" + browser.currentURI.spec.replace("\t", " ") + ">" + browser.currentURI.spec.replace("\t", " ") + "</a>" + "\t" + browser.contentDocument.title.replace("\t", " ") + "<br>");
+						}
+						else
+						{
+							lines.push("window #" + w + "/group #" + (idxGroup+1) + "/tab #" + (idxTab+1) + "\t" browser.currentURI.spec.replace("\t", " ") + browser.currentURI.spec.replace("\t", " ") + "\t" + browser.contentDocument.title.replace("\t", " "));
+						}
 					}
 				}
 			}
@@ -124,10 +147,23 @@ var savemytabs = {
 					
 					var pageDescription = tabbrowser.tabs[idxTab].label;
 					
-					lines.push(("window #" + w + "/tab #" + (t++)) + "\t" + "<a href=" + browser.currentURI.spec.replace("\t", " ") + ">" + browser.currentURI.spec.replace("\t", " ") + "</a>" + "\t" + browser.contentDocument.title.replace("\t", " ") + "<br>");
+					if ( useHtml )
+					{
+						lines.push("window #" + w + "/group #" + (idxGroup+1) + "/tab #" + (idxTab+1) + "\t" + "<a href=" + browser.currentURI.spec.replace("\t", " ") + ">" + browser.currentURI.spec.replace("\t", " ") + "</a>" + "\t" + browser.contentDocument.title.replace("\t", " ") + "<br>");
+					}
+					else
+					{
+						lines.push("window #" + w + "/group #" + (idxGroup+1) + "/tab #" + (idxTab+1) + browser.currentURI.spec.replace("\t", " ") + "\t" + browser.contentDocument.title.replace("\t", " "));
+					}
 				}
 			}
 			w++;
+		}
+		
+		if ( useHtml )
+		{
+			lines.push("</body>");
+			lines.push("</HTML>");
 		}
 
 		// Extract current date/time:
@@ -169,7 +205,7 @@ var savemytabs = {
 
 		if(file && file.exists())
 		{
-			file.append("opentabs-" + this.getUserName() + "-" + String(yyyy) + prepare(mm) + prepare(dd) + "-" + prepare(hh) + prepare(min) + ".html");
+			file.append("opentabs-" + this.getUserName() + "-" + String(yyyy) + prepare(mm) + prepare(dd) + "-" + prepare(hh) + prepare(min) + fileExt);
 
 			// Create file output stream:
 			var foStream = this.Cc["@mozilla.org/network/file-output-stream;1"].createInstance(this.Ci.nsIFileOutputStream);
