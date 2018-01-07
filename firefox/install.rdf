@@ -5,9 +5,10 @@
 
 		<em:id>savemytabs@dmitriy.khudorozhkov</em:id>
 		<em:name>Save My Tabs</em:name>
-		<em:version>0.53</em:version>
+		<em:version>0.54</em:version>
 		<em:creator>Dmitriy Khudorozhkov</em:creator>
-		<em:description>Firefox extension to periodically save all of your open tabs to a text file (window/tab index, URL and title of each tab)</em:description>
+		<em:contributor>Aidan Boyle/SpockMan02</em:contributor>
+		<em:description>Extension to periodically save all of your open tabs to a text file (window/tab index, URL and title of each tab)</em:description>
 		<em:optionsURL>chrome://savemytabs/content/options.xul</em:optionsURL>
 		<em:iconURL>chrome://savemytabs/skin/savemytabs.png</em:iconURL>
 
@@ -15,7 +16,14 @@
 			<Description>
 				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!-- firefox -->
 				<em:minVersion>2.0</em:minVersion>
-				<em:maxVersion>*</em:maxVersion>
+				<em:maxVersion>4.0b8pre</em:maxVersion>
+			</Description>
+		</em:targetApplication>
+		<em:targetApplication>
+			<Description>
+				<em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id> <!-- Pale Moon -->
+				<em:minVersion>2.0</em:minVersion>
+				<em:maxVersion>27.*</em:maxVersion>
 			</Description>
 		</em:targetApplication>
 
