@@ -60,6 +60,10 @@
 			<button id="savemytabs-resetP" label="&savemytabs.options.resetP;" oncommand="savemytabs.options.reset('Profile');"/>
 			<button id="savemytabs-resetH" label="&savemytabs.options.resetH;" oncommand="savemytabs.options.reset('Home');"/>
 		</hbox>
+		
+		<spacer style="height:10px;" />
+		
+		<checkbox id="savemytabs-usehtml" label="&savemytabs.options.usehtml;"  checked="true" />
 	</vbox>
 
 </dialog>
