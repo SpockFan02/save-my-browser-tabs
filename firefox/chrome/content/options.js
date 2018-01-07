@@ -46,6 +46,7 @@ savemytabs.options = {
 		document.getElementById("savemytabs-period").value = this.branch.getIntPref("period");
 		document.getElementById("savemytabs-savetabgroups").checked = this.branch.getBoolPref("savetabgroups");
 		document.getElementById("savemytabs-directory").value = this.branch.getCharPref("directory");
+		document.getElementById("savemytabs-usehtml").checked = this.branch.getBoolPref("usehtml");
 	},
 
 	chooseDir: function()
@@ -126,5 +127,8 @@ savemytabs.options = {
 			directory = "Home";
 
 		this.branch.setCharPref("directory", directory);
+		
+		var useHtml = document.getElementById("savemytabs-usehtml").checked;
+		this.branch.setBoolPref("usehtml", useHtml);
 	}
 };
