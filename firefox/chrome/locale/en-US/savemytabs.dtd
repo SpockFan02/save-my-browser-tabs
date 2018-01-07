@@ -6,3 +6,4 @@
 <!ENTITY savemytabs.options.choose "Choose directory">
 <!ENTITY savemytabs.options.resetP "Reset to Profile">
 <!ENTITY savemytabs.options.resetH "Reset to Home">
+<!ENTITY savemytabs.options.usehtml "Save as HTML">
